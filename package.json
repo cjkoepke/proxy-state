@@ -1,0 +1,27 @@
+{
+  "name": "proxy-state",
+  "version": "1.0.0",
+  "description": "A simple state machine based on ES6 Proxies.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cjkoepke/proxy-state.git"
+  },
+  "keywords": [
+    "proxies",
+    "state",
+    "javascript"
+  ],
+  "author": "Calvin Koepke",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/cjkoepke/proxy-state/issues"
+  },
+  "homepage": "https://github.com/cjkoepke/proxy-state#readme",
+  "devDependencies": {
+    "typescript": "^3.8.3"
+  }
+}

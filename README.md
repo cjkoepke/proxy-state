@@ -1,2 +1,2 @@
 # proxy-state
-A simple state machine based on ES6 Proxies
+A simple state machine based on ES6 Proxies.

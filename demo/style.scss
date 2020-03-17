@@ -1,0 +1,29 @@
+.box {
+    background: #ddd;
+    height: 140px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 140px;
+
+    &.active {
+        background: red;
+    }
+
+    &.box-2 {
+        left: auto;
+        right: 0;
+    }
+
+    &.box-3 {
+        bottom: 0;
+        left: auto;
+        right: 0;
+        top: auto;
+    }
+
+    &.box-4 {
+        bottom: 0;
+        top: auto;
+    }
+}
