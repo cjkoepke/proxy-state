@@ -1,29 +1,27 @@
-import Store from '../index'
+import Store from "../index";
 
-const MyStore = Store({
-    total: 0,
-    active: false
+/**
+ * Initiate your global store with default state.
+ */
+const { state, listen, detach } = Store({
+  count: 0
 });
 
-const { state, addSubscriber } = MyStore
+/**
+ * Set up initial content.
+ */
+const countEl = document.querySelector("#count");
+countEl.innerHTML = state.count;
 
-// Expose for demo.
-window.increase = () => state.total++
-window.decrease = () => state.total--
-window.red = () => state.active = true
-window.grey = () => state.active = false
-
-const count = document.querySelector('#count')
-const boxes = document.querySelectorAll('.box')
-
-addSubscriber((newState, oldState) => {
-    count.textContent = newState.total
-    console.log( state.all )
-})
-
-addSubscriber((newState, oldState) => {
-    boxes.forEach( box => newState.active
-        ? box.classList.add('active')
-        : box.classList.remove('active')
-    )
-})
+/**
+ * Methods to adjust the state.
+ */
+window.add = () => state.count++;
+window.sub = () => state.count--;
+window.listen = () => {
+    countEl.innerHTML = state.count
+    const result = listen('count', newState => (countEl.innerHTML = newState.count))
+}
+window.detach = () => {
+    const result = detach('count');
+}

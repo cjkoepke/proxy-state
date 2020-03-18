@@ -1,6 +1,7 @@
 import {
-    ProxyMethods,
-    ProxySchema,
+    MethodsType,
+    ProxyType,
+    SubscriberType,
     Store
 } from './interface'
 
@@ -13,13 +14,43 @@ const Store: Function = function(defaultState: Object = {}) {
     /**
      * Internal subscriber array.
      */
-    const Subscribers: Function[] = []
+    const Subscribers: SubscriberType[] = []
+
+    /**
+    * Helper methods to interact with state and subscribers.
+    */
+    const Methods: MethodsType = {
+        fetch: function(key) {
+            return Subscribers.find(sub => key === sub.key)
+        },
+
+        listen: function (key, subscriber) {
+            const match: SubscriberType | undefined = Subscribers.find(sub => key === sub.key)
+            if (!match) {
+                Subscribers.push({
+                    key,
+                    callbacks: [subscriber]
+                })
+            }
+
+            return Subscribers
+        },
+
+        detach: function (key) {
+            const index: number = Subscribers.findIndex(sub => key === sub.key);
+            if (-1 < index) {
+                Subscribers.splice(index, 1)
+            }
+
+            return Subscribers
+        }
+    }
 
     /**
      * Proxy handler object.
      */
-    const Handler: ProxySchema = {
-        get(state: object, key: string, receiver) {
+    const Handler: ProxyType = {
+        get(state: object, key: string) {
             if ( 'all' === key ) {
                 return state;
             }
@@ -34,17 +65,11 @@ const Store: Function = function(defaultState: Object = {}) {
             
             const oldState = {...state}
             state[key] = value
-            Subscribers.forEach(cb => cb(state, oldState))
-            return true
-        }
-    }
 
-    /**
-     * Helper methods to interact with state and subscribers.
-     */
-    const Methods: ProxyMethods = {
-        addSubscriber: function(subscriber: Function) {
-            Subscribers.push(subscriber)
+            const Subscriber: SubscriberType = Methods.fetch(key)
+            Subscriber && Subscriber.callbacks.forEach(subscriber => subscriber(state, oldState))
+
+            return true
         }
     }
 

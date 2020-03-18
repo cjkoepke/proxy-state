@@ -1,51 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Proxy State</title>
-    <link rel="stylesheet" href="./style.scss">
+    <title>Proxy-State Sandbox</title>
+    <meta charset="UTF-8" />
 </head>
 <body>
-    <h1>Demo</h1>
+    <h1>Hello!</h1>
+    <div>
+        Proxy-State is a simple package that provides an easy API for managing and subscribing to global state.
+        <div id="app">
+            <div class="buttons">
+                <button onClick="window.sub()">Subtract</button>
+                <button onClick="window.add()">Add</button>
+                <button onClick="window.listen()">Listen</button>
+                <button onClick="window.detach()">Detach</button>
+            </div>
+            <h2>Count: <span id="count"></span></h2>
+        </div>
+    </div>
 
-    <table>
-        <tr>
-            <th>Instance 1</th>
-            <th>Instance 2</th>
-        </tr>
-        <tr>
-            <td>
-                <h2>The Total Amount is: <span id="count">0</span></h1>
-                <button onClick="window.decrease()">Decrease</button>
-                <button onClick="window.increase()">Increase</button>
-                <pre>
-                    addSubscriber((newState, oldState) => {
-                        count.textContent = newState.total
-                    })
-                </pre>
-            </td>
-            <td>
-                <h2>Click to Invert Box Colors</h2>
-                <button onClick="window.red()">Red</button>
-                <button onClick="window.grey()">Grey</button>
-                <pre>
-                    addSubscriber((newState, oldState) => {
-                        boxes.forEach( box => newState.active
-                            ? box.classList.add('active')
-                            : box.classList.remove('active')
-                        )
-                    })
-                </pre>
-            </td>
-        </tr>
-    </table>
-
-    <div class="box"></div>
-    <div class="box box-2"></div>
-    <div class="box box-3"></div>
-    <div class="box box-4"></div>
-
-    <script src="./demo.js"></script>
+    <script src="/demo.js"></script>
 </body>
 </html>
