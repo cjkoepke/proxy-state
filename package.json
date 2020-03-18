@@ -22,8 +22,9 @@
   },
   "homepage": "https://github.com/cjkoepke/proxy-state#readme",
   "devDependencies": {
+    "cssnano": "^4.1.10",
+    "parcel-bundler": "1.12.4",
     "sass": "^1.26.3",
-    "typescript": "^3.8.3",
-    "parcel-bundler": "1.12.4"
+    "typescript": "^3.8.3"
   }
 }
