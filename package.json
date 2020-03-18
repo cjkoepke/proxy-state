@@ -4,8 +4,8 @@
   "description": "A simple state machine based on ES6 Proxies.",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel demo/index.html",
-    "build": "parcel build demo/index.html"
+    "dev": "parcel demo/index.html --out-dir ./demo/dist",
+    "build": "parcel build demo/index.html --out-dir ./docs"
   },
   "repository": {
     "type": "git",
