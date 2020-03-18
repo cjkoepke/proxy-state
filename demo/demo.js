@@ -1,11 +1,11 @@
 import Store from '../index'
 
-const store = Store({
+const MyStore = Store({
     total: 0,
     active: false
 });
 
-const { state, addSubscriber } = store
+const { state, addSubscriber } = MyStore
 
 // Expose for demo.
 window.increase = () => state.total++
@@ -18,6 +18,7 @@ const boxes = document.querySelectorAll('.box')
 
 addSubscriber((newState, oldState) => {
     count.textContent = newState.total
+    console.log( state.all )
 })
 
 addSubscriber((newState, oldState) => {

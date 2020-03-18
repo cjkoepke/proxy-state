@@ -1,54 +1,62 @@
 import {
-    ProxyHandler,
-    Subscriber,
+    ProxyMethods,
+    ProxySchema,
     Store
 } from './interface'
 
-const handler: ProxyHandler = {
-    get(state: object, key: string) {
-        if ( 'all' === key ) {
-            return state
-        }
+/**
+ * The main constructor.
+ * @param {Object} defaultState The default state to start with.
+ */
+const Store: Function = function(defaultState: Object = {}) {
 
-        return state[key]
-    },
+    /**
+     * Internal subscriber array.
+     */
+    const Subscribers: Function[] = []
 
-    set(state: object, key: string, value: any) {
-        if ( value == state[key] ) {
+    /**
+     * Proxy handler object.
+     */
+    const Handler: ProxySchema = {
+        get(state: object, key: string, receiver) {
+            if ( 'all' === key ) {
+                return state;
+            }
+
+            return state[key]
+        },
+
+        set(state: object, key: string, value: any) {
+            if ( value === state[key] ) {
+                return true
+            }
+            
+            const oldState = {...state}
+            state[key] = value
+            Subscribers.forEach(cb => cb(state, oldState))
             return true
         }
-        
-        const oldState = {...state}
-        state[key] = value
-        this.subscribers.forEach(cb => cb(state, oldState))
-        return true
-    },
-}
+    }
 
-const getSubscriberObject = (): Subscriber => {
-    const subscribers: Function[] = []
-    const addSubscriber: Function = (subscriber: Function) => subscribers.push(subscriber)
-    
+    /**
+     * Helper methods to interact with state and subscribers.
+     */
+    const Methods: ProxyMethods = {
+        addSubscriber: function(subscriber: Function) {
+            Subscribers.push(subscriber)
+        }
+    }
+
+    /**
+     * The main Proxy to manage state with.
+     */
+    const State = new Proxy( defaultState, Handler );
+
     return {
-        subscribers,
-        addSubscriber,
+        state: State,
+        ...Methods
     }
-}
-
-const Store: Function = function(defaultState = {}) {
-    const Subscriber: Subscriber = getSubscriberObject()
-
-    const schema = {
-        ...handler,
-        ...Subscriber
-    }
-
-    const ProxyStore = {
-        state: new Proxy( defaultState, schema ),
-        ...Subscriber
-    }
-
-    return ProxyStore
 }
 
 export default Store
