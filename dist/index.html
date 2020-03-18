@@ -1,0 +1,13 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Proxy State</title><link rel="stylesheet" href="/style.c78ceb85.css"></head><body> <h1>Demo</h1> <table> <tr> <th>Instance 1</th> <th>Instance 2</th> </tr> <tr> <td> <h2>The Total Amount is: <span id="count">0</span> <button onClick="window.decrease()">Decrease</button> <button onClick="window.increase()">Increase</button> <pre>
+                    addSubscriber((newState, oldState) => {
+                        count.textContent = newState.total
+                    })
+                </pre> </h2></td> <td> <h2>Click to Invert Box Colors</h2> <button onClick="window.red()">Red</button> <button onClick="window.grey()">Grey</button> <pre>
+                    addSubscriber((newState, oldState) => {
+                        boxes.forEach( box => newState.active
+                            ? box.classList.add('active')
+                            : box.classList.remove('active')
+                        )
+                    })
+                </pre> </td> </tr> </table> <div class="box"></div> <div class="box box-2"></div> <div class="box box-3"></div> <div class="box box-4"></div> <script src="/demo.5fb9ae7c.js"></script>
+</body></html>
