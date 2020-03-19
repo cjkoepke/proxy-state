@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "parcel dev/index.html --out-dir ./dev/dist",
     "build": "parcel build dev/index.html --out-dir ./docs",
-    "prod": "parcel build index.js --out-dir ./src --out-file proxy-state.js --no-source-maps"
+    "prod": "parcel build index.js --out-dir ./build --out-file proxy-state.js --no-source-maps"
   },
   "repository": {
     "type": "git",
