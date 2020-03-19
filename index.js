@@ -18,7 +18,7 @@ export default (defaultState = {}, debug = false) => {
     */
     const Methods = {
         fetch: function(key, ...rest) {
-            return Subscribers.filter(sub => [sub.key, ...rest].includes(sub.key))
+            return Subscribers.filter(sub => [key, ...rest].includes(sub.key))
         },
 
         listen: function (subscriber, key = 'all') {
@@ -59,7 +59,7 @@ export default (defaultState = {}, debug = false) => {
             const oldState = { ...state }
             state[key] = value
 
-            const subscribers = [...Methods.fetch(key), ...Methods.fetch('all')]
+            const subscribers = Methods.fetch(key, 'all')
             subscribers && subscribers.forEach(({subscriber}) => subscriber(state, oldState))
 
             return true

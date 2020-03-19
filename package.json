@@ -1,6 +1,6 @@
 {
   "name": "proxy-state",
-  "version": "1.2.1-beta",
+  "version": "1.0.0",
   "description": "A simple state machine based on ES6 Proxies.",
   "main": "index.js",
   "scripts": {
