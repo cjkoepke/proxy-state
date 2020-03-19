@@ -1,11 +1,12 @@
 {
   "name": "proxy-state",
-  "version": "1.1.0-beta",
+  "version": "1.2.0-beta",
   "description": "A simple state machine based on ES6 Proxies.",
   "main": "index.js",
   "scripts": {
-    "dev": "parcel demo/index.html --out-dir ./demo/dist",
-    "build": "parcel build demo/index.html --out-dir ./docs"
+    "dev": "parcel dev/index.html --out-dir ./dev/dist",
+    "build": "parcel build dev/index.html --out-dir ./docs",
+    "prod": "parcel build index.js --out-dir ./src --out-file proxy-state.js --no-source-maps"
   },
   "repository": {
     "type": "git",
@@ -23,9 +24,9 @@
   },
   "homepage": "https://github.com/cjkoepke/proxy-state#readme",
   "devDependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/preset-env": "^7.8.7",
     "cssnano": "^4.1.10",
-    "parcel-bundler": "1.12.4",
-    "sass": "^1.26.3",
-    "typescript": "^3.8.3"
+    "parcel-bundler": "1.12.4"
   }
 }
