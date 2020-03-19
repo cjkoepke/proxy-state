@@ -49,7 +49,9 @@ listen((newState, oldState) => {
 detach('count')
 ```
 
-The default import of the package gives you a constructor function, which takes a single argument: an object representing your default state.
+The default import of the package gives you a constructor function, which takes two arguments:
+1. An object representing your default state.
+2. Whether to use debugging mode or not.
 
 ## Options
 ### `defaultState: {}`
