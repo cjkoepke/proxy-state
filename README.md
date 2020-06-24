@@ -10,7 +10,7 @@ Currently, Proxy-State has no support for Internet Explorer.
 Install the package via `npm` or `yarn`:
 
 ```bash
-npm install @cjkoepke/proxy-state@1.3.2
+npm install @cjkoepke/proxy-state
 ```
 
 In your main entry file, create a store with the following:
