@@ -1,6 +1,6 @@
 {
   "name": "@cjkoepke/proxy-state",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "A simple state machine based on ES6 Proxies.",
   "main": "index.js",
   "scripts": {
